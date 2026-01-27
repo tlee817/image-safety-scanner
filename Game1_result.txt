@@ -1,0 +1,60 @@
+File name: aaPew.jpg
+Prediction: Safe
+Probabilities: tensor([[0.9964, 0.0036],
+        [0.9928, 0.0072],
+        [0.9931, 0.0069]])
+
+File name: a_illegal_1.png
+Prediction: May contain: pornographic, dangerous, gory material
+Probabilities: tensor([[1.2475e-02, 9.8753e-01],
+        [4.1405e-02, 9.5859e-01],
+        [1.3408e-08, 1.0000e+00]])
+
+File name: a_illegal_10.PNG
+Prediction: May contain: dangerous, gory material
+Probabilities: tensor([[0.5163, 0.4837],
+        [0.4630, 0.5370],
+        [0.0833, 0.9167]])
+
+File name: a_illegal_2.png
+Prediction: Safe
+Probabilities: tensor([[9.9990e-01, 1.0115e-04],
+        [8.5736e-01, 1.4264e-01],
+        [9.9976e-01, 2.4471e-04]])
+
+File name: a_illegal_3.png
+Prediction: May contain: pornographic, dangerous, gory material
+Probabilities: tensor([[3.6337e-04, 9.9964e-01],
+        [1.1978e-01, 8.8022e-01],
+        [2.9356e-02, 9.7064e-01]])
+
+File name: a_illegal_4.png
+Prediction: May contain: gory material
+Probabilities: tensor([[9.4085e-01, 5.9146e-02],
+        [9.9931e-01, 6.8977e-04],
+        [4.0102e-01, 5.9898e-01]])
+
+File name: boba_coffee.png
+Prediction: May contain: pornographic, dangerous, gory material
+Probabilities: tensor([[3.2932e-02, 9.6707e-01],
+        [5.8123e-02, 9.4188e-01],
+        [1.7856e-04, 9.9982e-01]])
+
+File name: boba_mango.png
+Prediction: May contain: pornographic, gory material
+Probabilities: tensor([[0.0156, 0.9844],
+        [0.5263, 0.4737],
+        [0.2478, 0.7522]])
+
+File name: boba_matcha.png
+Prediction: May contain: pornographic, dangerous, gory material
+Probabilities: tensor([[0.0283, 0.9717],
+        [0.0592, 0.9408],
+        [0.0114, 0.9886]])
+
+File name: boba_milktea.png
+Prediction: May contain: pornographic, dangerous, gory material
+Probabilities: tensor([[2.1637e-03, 9.9784e-01],
+        [1.0684e-01, 8.9316e-01],
+        [7.6294e-04, 9.9924e-01]])
+

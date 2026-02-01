@@ -55,7 +55,7 @@ Image folder          ShieldGemma 2 model          Report file
 1. **`folder_walker()`** iterates over every file in the target directory.
 2. **`image_classifire()`** loads each image with PIL, preprocesses it using the model's `AutoProcessor`, and runs inference with `ShieldGemma2ForImageClassification`.
 3. **`threshold()`** converts the raw probability scores into a human-readable verdict using a **0.5 probability threshold** per category.
-4. Results (filename, prediction, raw probabilities) are written to `<folder_name>_result.txt`.
+4. Results (filename, prediction, raw probabilities) are written to `results/<folder_name>_result.txt`.
 
 ---
 
@@ -116,17 +116,15 @@ You will be prompted for an access token. Generate one at [huggingface.co/settin
 
 ### Quick start
 
-Edit the folder path at the bottom of `image_process.py`:
-
-```python
-if __name__ == "__main__":
-    folder_walker("/path/to/your/image/folder")
+```bash
+python image_process.py /path/to/your/image/folder
 ```
 
-Then run:
+For example, to scan the included sample images:
 
 ```bash
-python image_process.py
+python image_process.py data/Game1
+python image_process.py data/Gladihoppers
 ```
 
 The first run will download the ShieldGemma 2 model weights (~8 GB). Subsequent runs use the cached model.
@@ -135,7 +133,7 @@ The first run will download the ShieldGemma 2 model weights (~8 GB). Subsequent 
 
 - The script scans every file in the specified folder (non-image files are skipped).
 - A progress log is printed to the console (`File found: ...`).
-- A report file named `<folder_name>_result.txt` is created in the working directory.
+- A report file named `<folder_name>_result.txt` is created in the `results/` directory.
 
 ---
 
@@ -193,16 +191,20 @@ The classification threshold is hardcoded at **0.5** inside the `threshold()` fu
 ```
 image-safety-scanner/
 ├── image_process.py            # Main script — model loading, scanning, classification
-├── policy_rows_seen.json       # Reference: probability tensor order and sample values
 ├── LICENSE                     # MIT License
 ├── README.md                   # This file
 ├── .gitignore                  # Excludes venvs, caches, secrets, IDE files
 ├── .pre-commit-config.yaml     # Pre-commit hooks (detect-secrets, whitespace, large files)
 │
-├── Game1/                      # Sample image folder (133 images — game assets)
-├── Game1_result.txt            # Sample output from scanning Game1/
-├── Gladihoppers/               # Sample image folder (22 images — game sprites)
-└── Gladihoppers_result.txt     # Sample output from scanning Gladihoppers/
+├── data/                       # Reference data and sample images
+│   ├── policy_rows_seen.json   # Probability tensor order and sample values
+│   ├── Game1/                  # Sample image folder (133 images — game assets)
+│   └── Gladihoppers/           # Sample image folder (22 images — game sprites)
+│
+└── results/                    # Scan output reports
+    ├── .gitkeep                # Keeps directory in git when empty
+    ├── Game1_result.txt        # Sample output from scanning data/Game1/
+    └── Gladihoppers_result.txt # Sample output from scanning data/Gladihoppers/
 ```
 
 ---

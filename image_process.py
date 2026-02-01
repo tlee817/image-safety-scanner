@@ -3,6 +3,11 @@ from PIL import Image
 import requests
 import torch
 import os
+import argparse
+
+# ---------- paths ----------
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+RESULTS_DIR = os.path.join(SCRIPT_DIR, "results")
 
 model_id = "google/shieldgemma-2-4b-it"
 
@@ -18,9 +23,9 @@ model = ShieldGemma2ForImageClassification.from_pretrained(model_id).to(device).
 processor = AutoProcessor.from_pretrained(model_id)
 
 def create_log(dir_name: str):
-    doc_name = dir_name + "_result.txt"
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    doc_name = os.path.join(RESULTS_DIR, dir_name + "_result.txt")
     f = open(doc_name, "w")
-    #f.write("poopies")
     return f
 
 def folder_walker(dir: str):
@@ -53,6 +58,7 @@ def folder_walker(dir: str):
                 break
     finally:
         result_file.close()
+        print(f"\nResults written to: {os.path.join(RESULTS_DIR, lastp + '_result.txt')}")
     
     """
     # Use this if you have a folder of folders and want to do them all at once
@@ -105,4 +111,9 @@ def image_classifire(image_path: str):
     return scores.probabilities
 
 if __name__ == "__main__":
-    folder_walker("C:/Users/cohun/Documents/ECENGR117/Asset_scanner/Gladihoppers")
+    parser = argparse.ArgumentParser(
+        description="Scan a folder of images for unsafe content using ShieldGemma 2."
+    )
+    parser.add_argument("folder", help="Path to the folder of images to scan")
+    args = parser.parse_args()
+    folder_walker(args.folder)
